@@ -1,6 +1,9 @@
 <div class="timeline-item">
   <p>
     <strong><%= project_activity.user.full_name %></strong>
+    <small class="text-muted"><%= time_ago_in_words(project_activity.created_at) %> ago</small>
+  </p>
+  <p>
     <% if project_activity.activity_type == "status_change" %>
       updated the status from
       <span class="badge bg-<%= project_status_class(project_activity.old_status) %>">
@@ -17,11 +20,7 @@
         <%= project_activity.new_status.humanize %>
       </span>
     <% elsif project_activity.activity_type == "comment" %>
-      commented
+      <p class=""><%= project_activity.content %></p>
     <% end %>
-    <small class="text-muted"><%= time_ago_in_words(project_activity.created_at) %> ago</small>
   </p>
-  <% if project_activity.activity_type == "comment" %>
-    <p class=""><%= project_activity.content %></p>
-  <% end %>
 </div>
