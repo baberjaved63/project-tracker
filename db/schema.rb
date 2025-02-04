@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_02_04_112002) do
+ActiveRecord::Schema[7.2].define(version: 2025_02_04_121659) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "project_activities", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.string "activity_type"
+    t.jsonb "additional_data", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_activities_on_project_id"
+    t.index ["user_id"], name: "index_project_activities_on_user_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
@@ -34,4 +45,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_04_112002) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "project_activities", "projects"
+  add_foreign_key "project_activities", "users"
 end

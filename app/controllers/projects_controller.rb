@@ -15,6 +15,11 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(project_params)
     if @project.save
+      @project.project_activities.create(
+        user: current_user,
+        activity_type: "create",
+        new_status: @project.status
+      )
       redirect_to @project, notice: "Project was successfully created."
     else
       render :new, status: :unprocessable_entity

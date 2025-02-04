@@ -7,9 +7,12 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Project.destroy_all
 Project.create([
   { name: "Project Alpha", status: :not_started },
-  { name: "Project Beta", status: :not_started },
-  { name: "Project Gamma", status: :not_started },
+  { name: "Project Bravo", status: :not_started },
+  { name: "Project Charlie", status: :not_started },
   { name: "Project Delta", status: :not_started }
 ])
+
+User.create(first_name: "Baber", last_name: "Javed", email: "baber.javed@email.com", password: "password123")

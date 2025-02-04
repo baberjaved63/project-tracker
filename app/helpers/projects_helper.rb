@@ -7,5 +7,4 @@ module ProjectsHelper
       "completed" => "success",
     }.fetch(status, "dark")
   end
-
 end

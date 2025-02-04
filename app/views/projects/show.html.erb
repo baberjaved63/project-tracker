@@ -1,11 +1,25 @@
-<h1 class="text-center"><%= @project.name %></h1>
-
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Status: <%= @project.status %></h5>
-  </div>
-</div>
-
 <div class="mt-3">
   <%= link_to "Back to Projects", projects_path, class: "btn btn-secondary" %>
+</div>
+
+<h1><%= @project.name %></h1>
+
+<div class="mb-3">
+  <%= form_with url: update_status_project_project_activities_path(@project), remote: true, class: "status-update-form" do |f| %>
+    <%= f.label :status, "Update Status", class: "form-label mx-3" %>
+    <%= f.select :status, Project.statuses.keys.map { |s| [s.humanize, s] }, {selected: @project.status}, class: "form-select w-50", onchange: "this.form.submit()" %>
+  <% end %>
+</div>
+
+<h3>Add Comment</h3>
+<%= form_with url: create_comment_project_project_activities_path(@project), remote: true do |f| %>
+  <div class="mb-3">
+    <%= f.text_area :content, class: "form-control", placeholder: "Write a comment..." %>
+  </div>
+  <%= f.submit "Comment", class: "btn btn-primary mb-5" %>
+<% end %>
+
+<h3>Activity</h3>
+<div id="timeline">
+  <%= render @project.project_activities.ordered %>
 </div>

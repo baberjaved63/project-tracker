@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+.status-update-form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  font-weight: bold;
+}
+.timeline-item {
+  background: #f8f9fa;
+  border-left: 4px solid #007bff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}

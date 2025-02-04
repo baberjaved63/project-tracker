@@ -1,4 +1,6 @@
 class Project < ApplicationRecord
+  has_many :project_activities, dependent: :destroy
+
   validates :name, presence: true, uniqueness: true
 
   enum status: {
