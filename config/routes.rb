@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "projects/index"
+  get "projects/show"
+  get "projects/create"
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -11,5 +14,7 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  root "projects#index"
+
+  resources :projects, only: %i[new create index show]
 end

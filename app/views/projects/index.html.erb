@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between">
+<h1 class="text-center">Projects</h1>
+
+<div class="text-end mb-3">
+  <%= link_to "New Project", new_project_path, class: "btn btn-primary" %>
+</div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td>
+          <span class="badge bg-<%= project_status_class(project.status) %>">
+            <%= project.status.humanize %>
+          </span>
+        </td>
+        <td><%= link_to "View", project_path(project), class: "btn btn-primary btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
