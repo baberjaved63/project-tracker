@@ -28,3 +28,6 @@
     <% end %>
   </tbody>
 </table>
+<div class="d-flex justify-content-center">
+  <%== pagy_bootstrap_nav(@pagy) if @projects.any? %>
+</div>
