@@ -57,7 +57,7 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
-gem "bootstrap", "~> 5.3.3"
+gem "bootstrap", "~> 5.3.5"
 gem "sassc-rails"
 
 gem "pagy", "~> 9.3"
